@@ -14,6 +14,7 @@ class TweetController extends Controller
     public function __construct(TweetService $tweetService)
     {
         $this->tweetService = $tweetService;
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
