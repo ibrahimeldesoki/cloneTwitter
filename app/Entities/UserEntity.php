@@ -3,9 +3,15 @@ namespace App\Entities;
 
 class UserEntity
 {
-    private $name;
-    private $email ;
-    private $password;
+    private $id , $name , $email , $password;
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+    public function getId()
+    {
+        return $this->id;
+    }
     public function setName($name)
     {
         $this->name = $name;

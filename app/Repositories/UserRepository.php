@@ -1,7 +1,6 @@
 <?php
 namespace App\repositories;
 
-use App\Entities\UserEntity;
 use App\User;
 
 class UserRepository
@@ -11,9 +10,15 @@ class UserRepository
     {
         $this->user = $user;
     }
-    public function register($attributes)
+    public function register($userEntity)
     {
-     $user =   $this->user->create($attributes);
-     dd($user);
+        $attributes = [];
+        $attributes['name'] = $userEntity->getName();
+        $attributes['password'] = $userEntity->getPassword();
+        $attributes['email'] = $userEntity->getEmail();
+        $user = $this->user->create($attributes);
+        $userEntity->setId($user->id) ;
+        return $userEntity;
+
     }
 }

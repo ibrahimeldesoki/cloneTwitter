@@ -14,12 +14,8 @@ class UserService
     }
     public  function create(UserEntity $userEntity)
     {
-        $attributes = [];
-        $attributes['name'] = $userEntity->getName();
-        $attributes['password'] = Hash::make($userEntity->getPassword());
-        $attributes['email'] = $userEntity->getEmail();
-
-        return $this->userRepository->register($attributes);
+        $userEntity->setPassword(Hash::make($userEntity->getPassword()));
+        return $this->userRepository->register($userEntity);
     }
 
 }
