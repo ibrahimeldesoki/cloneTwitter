@@ -24,3 +24,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/signup' , 'UserController@store')->name('user.signup');
 Route::resources(['tweet' => 'TweetController']);
+Route::post('/follow' , 'FollowController@follow');

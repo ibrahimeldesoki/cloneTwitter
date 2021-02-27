@@ -1,9 +1,20 @@
 <?php
 namespace App\Entities;
 
-class UserEntity
+use Illuminate\Contracts\Support\Arrayable;
+
+class UserEntity implements Arrayable
 {
     private $id , $name , $email , $password;
+    public function toArray()
+    {
+        $array = [];
+        $array['id'] = $this->id;
+        $array['name'] = $this->name;
+        $array['email'] = $this->email;
+        $array['password'] = $this->password;
+        return $array;
+    }
     public function setId($id)
     {
         $this->id = $id;

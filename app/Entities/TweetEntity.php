@@ -1,9 +1,20 @@
 <?php
 namespace App\Entities;
 
-class TweetEntity
+use Illuminate\Contracts\Support\Arrayable;
+
+class TweetEntity implements Arrayable
 {
     private $id , $content , $image , $userId;
+    public function toArray()
+    {
+        $array = [];
+        $array['id'] = $this->id;
+        $array['content'] = $this->content;
+        $array['image'] = $this->image;
+        $array['userId'] = $this->userId;
+        return $array;
+    }
     public function setId($id)
     {
         $this->id = $id ;

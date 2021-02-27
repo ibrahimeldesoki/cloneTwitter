@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entities\TweetEntity;
 use App\Http\Requests\TweetRequest;
+use App\LikeTweet;
 use App\Services\TweetService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,13 +45,10 @@ class TweetController extends Controller
      */
     public function store(TweetRequest $tweetRequest)
     {
-        // dd("fdsdf");
-
         $tweetEntity = new  TweetEntity;
         $tweetEntity->setUserId(Auth::user()->id);
         $tweetEntity->setContent($tweetRequest->content);
         $tweetEntity->setImage($tweetRequest->image);
-        // dd($tweetEntity);
         $this->tweetService->create($tweetEntity);
 
     }
@@ -99,4 +97,8 @@ class TweetController extends Controller
     {
         //
     }
+//     public function likeTweet(LikeTweetRequest $likeTweetRequest)
+//     {
+
+//     }
 }
