@@ -5,7 +5,10 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class TweetEntity implements Arrayable
 {
-    private $id , $content , $image , $userId;
+    private $id ;
+    private $content ;
+    private $image ;
+    private $userId;
     public function toArray()
     {
         $array = [];
@@ -19,7 +22,7 @@ class TweetEntity implements Arrayable
     {
         $this->id = $id ;
     }
-    public function  getId()
+    public function getId()
     {
         return $this->id;
     }
@@ -27,7 +30,7 @@ class TweetEntity implements Arrayable
     {
         $this->content = $content ;
     }
-    public function  getContent()
+    public function getContent()
     {
         return $this->content;
     }
@@ -35,7 +38,7 @@ class TweetEntity implements Arrayable
     {
         $this->image = $image ;
     }
-    public function  getImage()
+    public function getImage()
     {
         return $this->image;
     }
@@ -43,9 +46,8 @@ class TweetEntity implements Arrayable
     {
         $this->userId = $userId;
     }
-    public function  getUserId()
+    public function getUserId()
     {
         return $this->userId;
     }
-
 }

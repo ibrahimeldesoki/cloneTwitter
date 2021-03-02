@@ -13,7 +13,6 @@ class FollowService
     }
     public function follow(FollowEntity $followEntity)
     {
-        // dd("gdf");
         return $this->followRepository->follow($followEntity);
     }
 }

@@ -50,7 +50,6 @@ class TweetController extends Controller
         $tweetEntity->setContent($tweetRequest->content);
         $tweetEntity->setImage($tweetRequest->image);
         $this->tweetService->create($tweetEntity);
-
     }
 
     /**

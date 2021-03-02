@@ -48,8 +48,6 @@ class UserController extends Controller
         $userEntity->setEmail($userRequest->email);
         $userEntity->setPassword($userRequest->password);
         return $this->userService->create($userEntity);
-
-
     }
 
     /**

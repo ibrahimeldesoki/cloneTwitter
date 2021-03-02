@@ -13,8 +13,7 @@ class TweetService
     }
     public function create(TweetEntity $tweetEntity)
     {
-        if($tweetEntity->getImage() !=null)
-        {
+        if ($tweetEntity->getImage() !=null) {
             $imageName = time().'.'.$tweetEntity->getImage()->getClientOriginalExtension();
             $destinationPath = 'upload/images';
             $imagePath = $destinationPath. "/".  $imageName;

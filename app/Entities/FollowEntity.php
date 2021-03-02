@@ -5,8 +5,9 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class FollowEntity implements Arrayable
 {
-    private $follower_user_id ,$following_user_id;
-public function toArray()
+    private $follower_user_id ;
+    private $following_user_id;
+    public function toArray()
     {
         $array = [];
         $array['follower_user_id'] = $this->follower_user_id;
@@ -17,25 +18,24 @@ public function toArray()
     {
         $this->id = $id ;
     }
-    public function  getId()
+    public function getId()
     {
         return $this->id;
     }
-    public function setFollowerUserId($follower_user_id)
+    public function setFollowerUserId(UserEntity $userEntity)
     {
-        $this->follower_user_id = $follower_user_id;
+        $this->follower_user_id = $userEntity;
     }
     public function getFollowingUserId()
     {
         return  $this->follower_user_id;
     }
-    public function setFollowingUserId($following_user_id)
+    public function setFollowingUserId(UserEntity $userEntity)
     {
-        $this->following_user_id = $following_user_id;
+        $this->following_user_id = $userEntity;
     }
     public function getFollowerUserId()
     {
         return  $this->following_user_id;
     }
-
 }

@@ -17,8 +17,8 @@ class TweetRepository
         $attributes['content'] = $tweetEntity->getContent();
         $attributes['image'] = $tweetEntity->getImage();
         $attributes['user_id'] = $tweetEntity->getUserId();
-       $tweet = $this->tweet->create($attributes);
-       $tweetEntity->setId($tweet->id);
-       return $tweetEntity;
+        $tweet = $this->tweet->create($attributes);
+        $tweetEntity->setId($tweet->id);
+        return $tweetEntity;
     }
 }

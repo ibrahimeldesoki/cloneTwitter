@@ -5,7 +5,10 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class UserEntity implements Arrayable
 {
-    private $id , $name , $email , $password;
+    private $id ;
+    private $name ;
+    private $email ;
+    private $password;
     public function toArray()
     {
         $array = [];
@@ -31,7 +34,7 @@ class UserEntity implements Arrayable
     {
         return $this->name;
     }
-    public  function setEmail($email)
+    public function setEmail($email)
     {
         $this->email = $email;
     }
@@ -39,7 +42,7 @@ class UserEntity implements Arrayable
     {
         return $this->email;
     }
-    public  function setPassword($password)
+    public function setPassword($password)
     {
         $this->password = $password;
     }
@@ -47,6 +50,4 @@ class UserEntity implements Arrayable
     {
         return $this->password;
     }
-
 }
-
