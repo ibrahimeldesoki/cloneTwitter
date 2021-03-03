@@ -2,20 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\LikeTweetEntity;
 use App\Entities\TweetEntity;
+use App\Http\Requests\likeTweetRequest;
 use App\Http\Requests\TweetRequest;
 use App\LikeTweet;
+use App\Services\LikeTweetService;
 use App\Services\TweetService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TweetController extends Controller
 {
     private $tweetService ;
-    public function __construct(TweetService $tweetService)
+    private $likeTweetService;
+    private $userService ;
+    public function __construct(TweetService $tweetService , LikeTweetService $likeTweetService ,UserService $userService)
     {
         $this->tweetService = $tweetService;
-        $this->middleware('auth');
+        $this->likeTweetService = $likeTweetService;
+        $this->userService = $userService;
+        // $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -34,7 +42,7 @@ class TweetController extends Controller
      */
     public function create()
     {
-        return view('addTweet');
+        // return view('addTweet');
     }
 
     /**
@@ -96,8 +104,14 @@ class TweetController extends Controller
     {
         //
     }
-//     public function likeTweet(LikeTweetRequest $likeTweetRequest)
-//     {
+    public function likeTweet(likeTweetRequest $likeTweetRequest)
+    {
 
-//     }
+        $likeTweetEntity = new LikeTweetEntity ;
+
+        $likeTweetEntity->setTweetId($this->tweetService->find($likeTweetRequest->tweet_id));
+        $likeTweetEntity->setUserId($this->userService->find($likeTweetRequest->user_id));
+
+        return $this->likeTweetService->create($likeTweetEntity);
+    }
 }

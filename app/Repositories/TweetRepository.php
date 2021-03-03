@@ -21,4 +21,15 @@ class TweetRepository
         $tweetEntity->setId($tweet->id);
         return $tweetEntity;
     }
+    public function find($tweet_id)
+    {
+        $tweet = $this->tweet->find($tweet_id);
+        $tweetEntity = new TweetEntity ;
+        $tweetEntity->setId($tweet->id);
+        $tweetEntity->setImage($tweet->image);
+        $tweetEntity->setContent($tweet->content);
+        $tweetEntity->setUserId($tweet->user_id);
+
+        return $tweetEntity;
+    }
 }

@@ -2,8 +2,9 @@
 namespace App\Entities;
 
 use Illuminate\Contracts\Support\Arrayable;
+use JsonSerializable;
 
-class FollowEntity implements Arrayable
+class FollowEntity implements Arrayable , JsonSerializable
 {
     private $follower_user_id ;
     private $following_user_id;
@@ -14,6 +15,7 @@ class FollowEntity implements Arrayable
         $array['following_user_id'] = $this->following_user_id;
         return $array;
     }
+    public function jsonSerialize() { return $this->toArray();}
     public function setId($id)
     {
         $this->id = $id ;

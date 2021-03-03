@@ -2,8 +2,9 @@
 namespace App\Entities;
 
 use Illuminate\Contracts\Support\Arrayable;
+use JsonSerializable;
 
-class TweetEntity implements Arrayable
+class TweetEntity implements Arrayable , JsonSerializable
 {
     private $id ;
     private $content ;
@@ -18,6 +19,8 @@ class TweetEntity implements Arrayable
         $array['userId'] = $this->userId;
         return $array;
     }
+    public function jsonSerialize() { return $this->toArray();}
+
     public function setId($id)
     {
         $this->id = $id ;
