@@ -11,8 +11,8 @@ class FollowEntity implements Arrayable , JsonSerializable
     public function toArray()
     {
         $array = [];
-        $array['follower_user_id'] = $this->follower_user_id;
-        $array['following_user_id'] = $this->following_user_id;
+        $array['follower_user_id'] = $this->getFollowerUserId();
+        $array['following_user_id'] = $this->getFollowingUserId();
         return $array;
     }
     public function jsonSerialize() { return $this->toArray();}

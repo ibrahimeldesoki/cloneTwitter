@@ -13,8 +13,8 @@ class LikeTweetEntity implements Arrayable ,JsonSerializable
     {
         $array = [];
         $array['id'] = $this->id;
-        $array['tweet_id'] = $this->tweet_id;
-        $array['user_id'] = $this->user_id;
+        $array['tweet_id'] = $this->getTweetId();
+        $array['user_id'] = $this->getUserId();
         return $array;
     }
     public function jsonSerialize() { return $this->toArray();}

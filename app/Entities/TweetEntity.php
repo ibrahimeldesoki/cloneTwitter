@@ -13,10 +13,10 @@ class TweetEntity implements Arrayable , JsonSerializable
     public function toArray()
     {
         $array = [];
-        $array['id'] = $this->id;
-        $array['content'] = $this->content;
-        $array['image'] = $this->image;
-        $array['userId'] = $this->userId;
+        $array['id'] = $this->getId();
+        $array['content'] = $this->getContent();
+        $array['image'] = $this->getImage();
+        $array['user_id'] = $this->getUserId();
         return $array;
     }
     public function jsonSerialize() { return $this->toArray();}

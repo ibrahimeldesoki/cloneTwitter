@@ -13,10 +13,10 @@ class UserEntity implements Arrayable , JsonSerializable
     public function toArray()
     {
         $array = [];
-        $array['id'] = $this->id;
-        $array['name'] = $this->name;
-        $array['email'] = $this->email;
-        $array['password'] = $this->password;
+        $array['id'] = $this->getId();
+        $array['name'] = $this->getName();
+        $array['email'] = $this->getName();
+        $array['password'] = $this->getPassword();
         return $array;
     }
     public function jsonSerialize() { return $this->toArray();}
