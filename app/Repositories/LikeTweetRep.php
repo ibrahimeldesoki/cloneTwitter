@@ -24,6 +24,6 @@ class LikeTweetRep
     }
     public function liked(LikeTweetEntity $likeTweetEntity)
     {
-       return $this->likeTweet->where('user_id' ,$likeTweetEntity->getUserId()->getId())->where('tweet_id' ,$likeTweetEntity->getTweetId()->getId())->get() ;
+        return $this->likeTweet->where('user_id', $likeTweetEntity->getUserId()->getId())->where('tweet_id', $likeTweetEntity->getTweetId()->getId())->first() ;
     }
 }

@@ -14,7 +14,7 @@ class LikeTweetService
     public function create(LikeTweetEntity $likeTweetEntity)
     {
         $likedTweet = $this->likeTweetRep->liked($likeTweetEntity);
-        if($likedTweet)
+        if($likedTweet !=null)
         {
             return "U liked this tweet before";
         }
