@@ -21,6 +21,7 @@ class TweetController extends Controller
 
     public function __construct(TweetService $tweetService, LikeTweetService $likeTweetService, UserService $userService)
     {
+        // tweet
         $this->tweetService = $tweetService;
         $this->likeTweetService = $likeTweetService;
         $this->userService = $userService;
