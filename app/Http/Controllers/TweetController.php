@@ -25,7 +25,6 @@ class TweetController extends Controller
         $this->tweetService = $tweetService;
         $this->likeTweetService = $likeTweetService;
         $this->userService = $userService;
-        // $this->middleware('auth');
     }
 
     /**
