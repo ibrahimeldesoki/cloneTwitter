@@ -15,16 +15,18 @@ use Illuminate\Support\Facades\Auth;
 
 class TweetController extends Controller
 {
-    private $tweetService ;
+    private $tweetService;
     private $likeTweetService;
-    private $userService ;
-    public function __construct(TweetService $tweetService , LikeTweetService $likeTweetService ,UserService $userService)
+    private $userService;
+
+    public function __construct(TweetService $tweetService, LikeTweetService $likeTweetService, UserService $userService)
     {
         $this->tweetService = $tweetService;
         $this->likeTweetService = $likeTweetService;
         $this->userService = $userService;
         // $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -48,12 +50,13 @@ class TweetController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(TweetRequest $tweetRequest)
     {
-        $tweetEntity = new  TweetEntity;
+        $tweetEntity = new  TweetEntity();
         $tweetEntity->setUserId(Auth::user()->id);
         $tweetEntity->setContent($tweetRequest->content);
         $tweetEntity->setImage($tweetRequest->image);
@@ -63,7 +66,8 @@ class TweetController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -74,7 +78,8 @@ class TweetController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -85,8 +90,9 @@ class TweetController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -97,17 +103,18 @@ class TweetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
     }
+
     public function likeTweet(likeTweetRequest $likeTweetRequest)
     {
-
-        $likeTweetEntity = new LikeTweetEntity ;
+        $likeTweetEntity = new LikeTweetEntity();
 
         $likeTweetEntity->setTweetId($this->tweetService->find($likeTweetRequest->tweet_id));
         $likeTweetEntity->setUserId($this->userService->find($likeTweetRequest->user_id));

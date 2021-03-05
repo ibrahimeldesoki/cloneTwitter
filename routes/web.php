@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\TweetController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/signup' , 'UserController@store')->name('user.signup');
+Route::post('/signup', 'UserController@store')->name('user.signup');
 Route::resources(['tweet' => 'TweetController']);
-Route::post('/follow' , 'FollowController@follow');
-Route::post('/like' , 'TweetController@likeTweet');
+Route::post('/follow', 'FollowController@follow');
+Route::post('/like', 'TweetController@likeTweet');

@@ -27,8 +27,8 @@ class TweetRequest extends FormRequest
         // dd(Request()->all());
         return [
             'content' => 'required|string|max:250',
-            'image' => 'mimes:jpeg,jpg,png,gif|required',
-            'user_id' => 'required|exists:users,id'
+            'image'   => 'mimes:jpeg,jpg,png,gif|required',
+            'user_id' => 'required|exists:users,id',
         ];
     }
 }
