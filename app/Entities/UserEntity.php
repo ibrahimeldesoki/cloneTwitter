@@ -17,7 +17,7 @@ class UserEntity implements Arrayable, JsonSerializable
         $array = [];
         $array['id'] = $this->getId();
         $array['name'] = $this->getName();
-        $array['email'] = $this->getName();
+        $array['email'] = $this->getEmail();
         $array['password'] = $this->getPassword();
 
         return $array;
