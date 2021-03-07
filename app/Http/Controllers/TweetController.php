@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Entities\LikeTweetEntity;
 use App\Entities\TweetEntity;
-use App\Http\Requests\likeTweetRequest;
 use App\Http\Requests\TweetRequest;
 use App\Services\LikeTweetService;
 use App\Services\TweetService;

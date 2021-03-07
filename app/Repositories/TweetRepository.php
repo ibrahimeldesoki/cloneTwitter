@@ -11,7 +11,8 @@ class TweetRepository
 {
     private $tweet;
     private $userService;
-    public function __construct(Tweet $tweet ,UserService $userService)
+
+    public function __construct(Tweet $tweet, UserService $userService)
     {
         $this->tweet = $tweet;
         $this->userService = $userService;
