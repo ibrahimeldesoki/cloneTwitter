@@ -9,7 +9,8 @@ class FollowRepository
 {
     private $follow;
     private $userRepository;
-    public function __construct(Follow $follow , UserRepository $userRepository)
+
+    public function __construct(Follow $follow, UserRepository $userRepository)
     {
         $this->follow = $follow;
         $this->userRepository = $userRepository;
@@ -25,16 +26,18 @@ class FollowRepository
 
         return $followEntity;
     }
+
     public function find($follow_id)
     {
-        $follow =  $this->follow->find($follow_id);
-        $followEntity = new FollowEntity;
+        $follow = $this->follow->find($follow_id);
+        $followEntity = new FollowEntity();
         $followEntity->setId($follow->id);
         $followEntity->setFollowerEntity($this->userRepository->find($follow->follower_user_id));
         $followEntity->setFollowingEntity($this->userRepository->find($follow->following_user_id));
 
         return $followEntity;
     }
+
     public function followed(FollowEntity $followEntity)
     {
         return $this->follow
