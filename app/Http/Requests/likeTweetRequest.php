@@ -25,7 +25,7 @@ class likeTweetRequest extends FormRequest
     {
         return [
             'user_id'   => 'required|exists:users,id',
-            'tweet_id'  => 'required|exists:tweets,id',
+            // 'tweet_id'  => 'required|exists:tweets,id',
         ];
     }
 }

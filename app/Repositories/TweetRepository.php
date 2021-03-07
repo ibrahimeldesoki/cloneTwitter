@@ -3,15 +3,18 @@
 namespace App\repositories;
 
 use App\Entities\TweetEntity;
+use App\Services\UserService;
 use App\Tweet;
+use Illuminate\Support\Facades\Auth;
 
 class TweetRepository
 {
     private $tweet;
-
-    public function __construct(Tweet $tweet)
+    private $userService;
+    public function __construct(Tweet $tweet ,UserService $userService)
     {
         $this->tweet = $tweet;
+        $this->userService = $userService;
     }
 
     public function store(TweetEntity $tweetEntity)
@@ -19,7 +22,7 @@ class TweetRepository
         $attributes = [];
         $attributes['content'] = $tweetEntity->getContent();
         $attributes['image'] = $tweetEntity->getImage();
-        $attributes['user_id'] = $tweetEntity->getUserId();
+        $attributes['user_id'] = $tweetEntity->getUserEntity();
         $tweet = $this->tweet->create($attributes);
         $tweetEntity->setId($tweet->id);
 
@@ -33,7 +36,7 @@ class TweetRepository
         $tweetEntity->setId($tweet->id);
         $tweetEntity->setImage($tweet->image);
         $tweetEntity->setContent($tweet->content);
-        $tweetEntity->setUserId($tweet->user_id);
+        $tweetEntity->setUserEntity($this->userService->find(Auth::user()->id));
 
         return $tweetEntity;
     }

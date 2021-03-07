@@ -6,7 +6,6 @@ use App\Entities\LikeTweetEntity;
 use App\Entities\TweetEntity;
 use App\Http\Requests\likeTweetRequest;
 use App\Http\Requests\TweetRequest;
-use App\LikeTweet;
 use App\Services\LikeTweetService;
 use App\Services\TweetService;
 use App\Services\UserService;
@@ -57,7 +56,7 @@ class TweetController extends Controller
     public function store(TweetRequest $tweetRequest)
     {
         $tweetEntity = new  TweetEntity();
-        $tweetEntity->setUserId(Auth::user()->id);
+        $tweetEntity->setUserEntity($this->userService->find(Auth::user()->id));
         $tweetEntity->setContent($tweetRequest->content);
         $tweetEntity->setImage($tweetRequest->image);
         $this->tweetService->create($tweetEntity);
@@ -112,12 +111,12 @@ class TweetController extends Controller
         //
     }
 
-    public function likeTweet(likeTweetRequest $likeTweetRequest)
+    public function likeTweet($id)
     {
         $likeTweetEntity = new LikeTweetEntity();
 
-        $likeTweetEntity->setTweetId($this->tweetService->find($likeTweetRequest->tweet_id));
-        $likeTweetEntity->setUserId($this->userService->find($likeTweetRequest->user_id));
+        $likeTweetEntity->setTweetId($this->tweetService->find($id));
+        $likeTweetEntity->setUserEntity($this->userService->find(Auth::user()->id));
 
         return $this->likeTweetService->create($likeTweetEntity);
     }

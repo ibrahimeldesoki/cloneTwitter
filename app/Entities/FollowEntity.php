@@ -7,14 +7,16 @@ use JsonSerializable;
 
 class FollowEntity implements Arrayable, JsonSerializable
 {
-    private $follower_user_id;
-    private $following_user_id;
+    private $id;
+    private $followerUser ;
+    private $followingUser;
 
     public function toArray()
     {
         $array = [];
-        $array['follower_user_id'] = $this->getFollowerUserId();
-        $array['following_user_id'] = $this->getFollowingUserId();
+        $array['id'] = $this->getId();
+        $array['followerUser'] = $this->getFollowerEntity();
+        $array['followingUser'] = $this->getFollowingEntity();
 
         return $array;
     }
@@ -33,24 +35,22 @@ class FollowEntity implements Arrayable, JsonSerializable
     {
         return $this->id;
     }
-
-    public function setFollowerUserId(UserEntity $userEntity)
+    public function setFollowingEntity(UserEntity $userEntity)
     {
-        $this->follower_user_id = $userEntity;
+        $this->followingUser = $userEntity;
     }
 
-    public function getFollowingUserId()
+    public function getFollowingEntity()
     {
-        return  $this->follower_user_id;
+        return  $this->followingUser;
     }
 
-    public function setFollowingUserId(UserEntity $userEntity)
+    public function setFollowerEntity(UserEntity $userEntity)
     {
-        $this->following_user_id = $userEntity;
+        $this->followerUser  = $userEntity;
     }
-
-    public function getFollowerUserId()
+    public function getFollowerEntity()
     {
-        return  $this->following_user_id;
+        return  $this->followerUser;
     }
 }
