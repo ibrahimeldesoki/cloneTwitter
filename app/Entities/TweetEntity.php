@@ -10,7 +10,7 @@ class TweetEntity implements Arrayable, JsonSerializable
     private $id;
     private $content;
     private $image;
-    private $userId;
+    private $user;
 
     public function toArray()
     {
@@ -18,7 +18,7 @@ class TweetEntity implements Arrayable, JsonSerializable
         $array['id'] = $this->getId();
         $array['content'] = $this->getContent();
         $array['image'] = $this->getImage();
-        $array['user_id'] = $this->getUserId();
+        $array['user'] = $this->getUser();
 
         return $array;
     }
@@ -58,13 +58,13 @@ class TweetEntity implements Arrayable, JsonSerializable
         return $this->image;
     }
 
-    public function setUserId($userId)
+    public function setUser(UserEntity $userEntity)
     {
-        $this->userId = $userId;
+        $this->user = $userEntity;
     }
 
-    public function getUserId()
+    public function getUser()
     {
-        return $this->userId;
+        return $this->user;
     }
 }

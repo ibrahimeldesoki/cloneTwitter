@@ -4,6 +4,7 @@ namespace  App\Services;
 
 use App\Entities\LikeTweetEntity;
 use App\repositories\LikeTweetRep;
+use Exception;
 
 class LikeTweetService
 {
@@ -17,8 +18,8 @@ class LikeTweetService
     public function create(LikeTweetEntity $likeTweetEntity)
     {
         $likedTweet = $this->likeTweetRep->liked($likeTweetEntity);
-        if ($likedTweet != null) {
-            return 'U liked this tweet before';
+        if ($likedTweet) {
+            throw new Exception('U liked this tweet before');
         }
 
         return $this->likeTweetRep->create($likeTweetEntity);
