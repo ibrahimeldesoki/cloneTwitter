@@ -22,7 +22,7 @@ class TweetRepository
         $attributes = [];
         $attributes['content'] = $tweetEntity->getContent();
         $attributes['image'] = $tweetEntity->getImage();
-        $attributes['user_id'] = $tweetEntity->getUserEntity();
+        $attributes['user_id'] = $tweetEntity->getUser();
         $tweet = $this->tweet->create($attributes);
         $tweetEntity->setId($tweet->id);
 
@@ -36,7 +36,7 @@ class TweetRepository
         $tweetEntity->setId($tweet->id);
         $tweetEntity->setImage($tweet->image);
         $tweetEntity->setContent($tweet->content);
-        $tweetEntity->setUserEntity($this->userService->find(Auth::user()->id));
+        $tweetEntity->setUser($this->userService->find($tweet->user_id));
 
         return $tweetEntity;
     }

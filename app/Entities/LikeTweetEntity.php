@@ -8,15 +8,15 @@ use JsonSerializable;
 class LikeTweetEntity implements Arrayable, JsonSerializable
 {
     private $id;
-    private $UserEntity;
+    private $userEntity;
     private $tweetEntity;
 
     public function toArray()
     {
         $array = [];
         $array['id'] = $this->id;
-        $array['tweetEntity'] = $this->getTweetEntity();
-        $array['UserEntity'] = $this->getUserEntity();
+        $array['tweet'] = $this->getTweet();
+        $array['user'] = $this->getUser();
 
         return $array;
     }
@@ -36,22 +36,22 @@ class LikeTweetEntity implements Arrayable, JsonSerializable
         return $this->id;
     }
 
-    public function setUserEntity(UserEntity $userEntity)
+    public function setUser(UserEntity $userEntity)
     {
-        $this->UserEntity = $userEntity;
+        $this->userEntity = $userEntity;
     }
 
-    public function getUserEntity()
+    public function getUser()
     {
-        return $this->UserEntity;
+        return $this->userEntity;
     }
 
-    public function setTweetId(TweetEntity $tweetEntity)
+    public function setTweet(TweetEntity $tweetEntity)
     {
         $this->tweetEntity = $tweetEntity;
     }
 
-    public function getTweetEntity()
+    public function getTweet()
     {
         return $this->tweetEntity;
     }

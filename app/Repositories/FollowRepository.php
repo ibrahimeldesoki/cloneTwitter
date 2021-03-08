@@ -9,7 +9,7 @@ class FollowRepository
 {
     private $follow;
     private $userRepository;
-    public function __construct(Follow $follow , UserRepository $userRepository)
+    public function __construct(Follow $follow, UserRepository $userRepository)
     {
         $this->follow = $follow;
         $this->userRepository = $userRepository;
@@ -40,6 +40,6 @@ class FollowRepository
         return $this->follow
         ->where('follower_user_id', $followEntity->getFollowerEntity()->getId())
         ->where('following_user_id', $followEntity->getFollowingEntity()->getId())
-        ->first();
+        ->exists();
     }
 }

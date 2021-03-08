@@ -18,8 +18,8 @@ class LikeTweetRep
     public function create(LikeTweetEntity $likeTweetEntity)
     {
         $attributes = [];
-        $attributes['user_id'] = $likeTweetEntity->getUserEntity()->getId();
-        $attributes['tweet_id'] = $likeTweetEntity->getTweetEntity()->getId();
+        $attributes['user_id'] = $likeTweetEntity->getUser()->getId();
+        $attributes['tweet_id'] = $likeTweetEntity->getTweet()->getId();
         $like = $this->likeTweet->create($attributes);
         $likeTweetEntity->setId($like->id);
         // dd($likeTweetEntity);
@@ -28,6 +28,7 @@ class LikeTweetRep
 
     public function liked(LikeTweetEntity $likeTweetEntity)
     {
-        return $this->likeTweet->where('user_id', $likeTweetEntity->getUserEntity()->getId())->where('tweet_id', $likeTweetEntity->getTweetEntity()->getId())->first();
+      return $this->likeTweet->where('user_id', $likeTweetEntity->getUser()->getId())->where('tweet_id', $likeTweetEntity->getTweet()->getId())->exists();
+
     }
 }
