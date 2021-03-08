@@ -18,15 +18,12 @@ class FollowService
     public function follow(FollowEntity $followEntity)
     {
         $followExist = $this->followRepository->followed($followEntity);
-        if($followExist)
-        {
-            throw new Exception("You already follow this user");
+        if ($followExist) {
+            throw new Exception('You already follow this user');
+        } elseif ($followEntity->getFollowerEntity()->getId() == $followEntity->getFollowingEntity()->getId()) {
+            throw new Exception('You can not follow yourself');
         }
-        elseif($followEntity->getFollowerEntity()->getId() == $followEntity->getFollowingEntity()->getId())
-        {
-            throw new Exception("You can not follow yourself");
 
-        }
         return $this->followRepository->follow($followEntity);
     }
 }

@@ -4,7 +4,6 @@ namespace App\repositories;
 
 use App\Entities\LikeTweetEntity;
 use App\LikeTweet;
-use App\User;
 
 class LikeTweetRep
 {

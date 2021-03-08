@@ -8,7 +8,7 @@ use JsonSerializable;
 class FollowEntity implements Arrayable, JsonSerializable
 {
     private $id;
-    private $followerUser ;
+    private $followerUser;
     private $followingUser;
 
     public function toArray()
@@ -35,6 +35,7 @@ class FollowEntity implements Arrayable, JsonSerializable
     {
         return $this->id;
     }
+
     public function setFollowingEntity(UserEntity $userEntity)
     {
         $this->followingUser = $userEntity;
@@ -47,8 +48,9 @@ class FollowEntity implements Arrayable, JsonSerializable
 
     public function setFollowerEntity(UserEntity $userEntity)
     {
-        $this->followerUser  = $userEntity;
+        $this->followerUser = $userEntity;
     }
+
     public function getFollowerEntity()
     {
         return  $this->followerUser;
