@@ -5,7 +5,6 @@ namespace App\repositories;
 use App\Entities\TweetEntity;
 use App\Services\UserService;
 use App\Tweet;
-use Illuminate\Support\Facades\Auth;
 
 class TweetRepository
 {

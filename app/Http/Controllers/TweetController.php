@@ -23,10 +23,12 @@ class TweetController extends Controller
         $this->likeTweetService = $likeTweetService;
         $this->userService = $userService;
     }
+
     public function create()
     {
         // return view('addTweet');
     }
+
     public function store(TweetRequest $tweetRequest)
     {
         $tweetEntity = new  TweetEntity();
@@ -35,6 +37,7 @@ class TweetController extends Controller
         $tweetEntity->setImage($tweetRequest->image);
         $this->tweetService->create($tweetEntity);
     }
+
     public function likeTweet($id)
     {
         $likeTweetEntity = new LikeTweetEntity();
