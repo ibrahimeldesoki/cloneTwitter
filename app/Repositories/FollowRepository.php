@@ -9,6 +9,7 @@ class FollowRepository
 {
     private $follow;
     private $userRepository;
+
     public function __construct(Follow $follow, UserRepository $userRepository)
     {
         $this->follow = $follow;
