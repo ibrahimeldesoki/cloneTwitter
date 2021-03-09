@@ -4,9 +4,12 @@ namespace App\Entities;
 
 use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
+
 class SearchTweetEntity implements Arrayable, JsonSerializable
 {
-    private $id , $searchTweet;
+    private $id;
+    private $searchTweet;
+
     public function toArray()
     {
         $array = [];
@@ -20,6 +23,7 @@ class SearchTweetEntity implements Arrayable, JsonSerializable
     {
         return $this->toArray();
     }
+
     public function setId($id)
     {
         $this->id = $id;
@@ -29,11 +33,13 @@ class SearchTweetEntity implements Arrayable, JsonSerializable
     {
         return $this->id;
     }
-    public  function setSearchTweet(TweetEntity $tweetEntity)
+
+    public function setSearchTweet(TweetEntity $tweetEntity)
     {
         $this->searchTweet = $tweetEntity;
     }
-    public  function getSearchTweet()
+
+    public function getSearchTweet()
     {
         return $this->searchTweet;
     }

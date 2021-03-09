@@ -24,7 +24,7 @@ class SearchTweetRequest extends FormRequest
     public function rules()
     {
         return [
-            'searchTweet' => 'string|required'
+            'searchTweet' => 'string|required',
         ];
     }
 }

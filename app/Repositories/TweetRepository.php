@@ -14,7 +14,7 @@ class TweetRepository
     private $userService;
     private $tweetService;
 
-    public function __construct(Tweet $tweet, UserService $userService , TweetService $tweetService)
+    public function __construct(Tweet $tweet, UserService $userService, TweetService $tweetService)
     {
         $this->tweet = $tweet;
         $this->userService = $userService;
@@ -44,12 +44,14 @@ class TweetRepository
 
         return $tweetEntity;
     }
+
     public function search(string $searchTweet)
     {
-        $tweet = $this->tweet->whereLike('content' ,$searchTweet)->get();
-        $searchTweetEntity = new SearchTweetEntity;
+        $tweet = $this->tweet->whereLike('content', $searchTweet)->get();
+        $searchTweetEntity = new SearchTweetEntity();
         $searchTweetEntity->setId($tweet->id);
         $searchTweetEntity->setSearchTweet($this->tweetService->find($tweet->id));
+
         return  $searchTweetEntity;
     }
 }

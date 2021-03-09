@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Entities\LikeTweetEntity;
-use App\Entities\SearchTweetEntity;
 use App\Entities\TweetEntity;
 use App\Http\Requests\searchTweetRequest;
 use App\Http\Requests\TweetRequest;
@@ -51,6 +50,6 @@ class TweetController extends Controller
 
     public function searchTweet(searchTweetRequest $searchTweetRequest)
     {
-       return $this->tweetService->search($searchTweetRequest->searchTweet);
+        return $this->tweetService->search($searchTweetRequest->searchTweet);
     }
 }

@@ -31,8 +31,9 @@ class TweetService
     {
         return $this->tweetRep->find($tweet_id);
     }
+
     public function search(string $searchTweet)
     {
-       return $this->tweetRep->search($searchTweet);
+        return $this->tweetRep->search($searchTweet);
     }
 }
