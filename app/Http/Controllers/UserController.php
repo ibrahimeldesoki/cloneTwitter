@@ -9,9 +9,10 @@ use App\Services\UserService;
 class UserController extends Controller
 {
     private $userService;
+
     public function __construct(UserService $userService)
     {
-        $this->userService =  $userService;
+        $this->userService = $userService;
     }
 
     public function store(UserRequest $userRequest)
@@ -21,6 +22,7 @@ class UserController extends Controller
         $userEntity->setName($userRequest->name);
         $userEntity->setEmail($userRequest->email);
         $userEntity->setPassword($userRequest->password);
+
         return $this->userService->create($userEntity);
     }
 }
