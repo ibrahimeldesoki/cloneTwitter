@@ -4,21 +4,19 @@ namespace App\repositories;
 
 use App\Entities\SearchTweetEntity;
 use App\Entities\TweetEntity;
-use App\Services\TweetService;
-use App\Services\UserService;
+use App\Repositories\TweetRepository;
+use App\Repositories\UserRepository;
 use App\Tweet;
 
 class TweetRepository
 {
     private $tweet;
-    private $userService;
-    private $tweetService;
+    private $userRepository;
 
-    public function __construct(Tweet $tweet, UserService $userService, TweetService $tweetService)
+    public function __construct(Tweet $tweet, userRepository $userRepository)
     {
         $this->tweet = $tweet;
-        $this->userService = $userService;
-        $this->tweetService = $tweetService;
+        $this->userRepository = $userRepository;
     }
 
     public function store(TweetEntity $tweetEntity)
@@ -40,18 +38,22 @@ class TweetRepository
         $tweetEntity->setId($tweet->id);
         $tweetEntity->setImage($tweet->image);
         $tweetEntity->setContent($tweet->content);
-        $tweetEntity->setUser($this->userService->find($tweet->user_id));
+        $tweetEntity->setUser($this->userRepository->find($tweet->user_id));
 
         return $tweetEntity;
     }
 
     public function search(string $searchTweet)
     {
-        $tweet = $this->tweet->whereLike('content', $searchTweet)->get();
-        $searchTweetEntity = new SearchTweetEntity();
-        $searchTweetEntity->setId($tweet->id);
-        $searchTweetEntity->setSearchTweet($this->tweetService->find($tweet->id));
+        $tweets = $this->tweet->where('content','LIKE', '%'.$searchTweet.'%')->get();
+        $entities = [];
+        foreach($tweets as $tweet) {
+            $searchTweetEntity = new SearchTweetEntity();
+            $searchTweetEntity->setId($tweet->id);
+            $searchTweetEntity->setSearchTweet($this->find($tweet->id));
+            $entities[] = $searchTweetEntity;
+        }
 
-        return  $searchTweetEntity;
+        return  $entities;
     }
 }
