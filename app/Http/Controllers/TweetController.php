@@ -14,7 +14,8 @@ class TweetController extends Controller
 {
     private $tweetService;
     private $likeTweetService;
-    private $userService ;
+    private $userService;
+
     public function __construct(TweetService $tweetService, LikeTweetService $likeTweetService, UserService $userService)
     {
         // Change by ahmed
@@ -23,10 +24,12 @@ class TweetController extends Controller
         $this->userService = $userService;
         // $this->middleware('auth');
     }
+
     public function create()
     {
         // return view('addTweet');
     }
+
     public function store(TweetRequest $tweetRequest)
     {
         $tweetEntity = new  TweetEntity();
@@ -44,8 +47,8 @@ class TweetController extends Controller
 
         return $this->likeTweetService->create($likeTweetEntity);
     }
+
     public function searchTweet()
     {
-
     }
 }
