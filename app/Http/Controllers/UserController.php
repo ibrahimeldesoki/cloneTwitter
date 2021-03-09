@@ -21,10 +21,6 @@ class UserController extends Controller
         $userEntity->setName($userRequest->name);
         $userEntity->setEmail($userRequest->email);
         $userEntity->setPassword($userRequest->password);
-<<<<<<< HEAD
-=======
-
->>>>>>> da8719ea1bcd684f00a140de25955eafd2012743
         return $this->userService->create($userEntity);
     }
 }
