@@ -22,10 +22,12 @@ class UserEntity implements Arrayable, JsonSerializable
 
         return $array;
     }
+
     public function jsonSerialize()
     {
         return $this->toArray();
     }
+
     public function setId($id)
     {
         $this->id = $id;

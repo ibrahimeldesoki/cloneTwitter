@@ -9,8 +9,9 @@ use App\Services\UserService;
 
 class FollowController extends Controller
 {
-    private $followService ;
-    private $userService ;
+    private $followService;
+    private $userService;
+
     public function __construct(FollowService $followService, UserService $userService)
     {
         $this->followService = $followService;
