@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entities;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -6,17 +7,19 @@ use JsonSerializable;
 
 class TweetEntity implements Arrayable, JsonSerializable
 {
-    private $id ;
-    private $content ;
-    private $image ;
-    private $userId;
+    private $id;
+    private $content;
+    private $image;
+    private $user;
+
     public function toArray()
     {
         $array = [];
         $array['id'] = $this->getId();
         $array['content'] = $this->getContent();
         $array['image'] = $this->getImage();
-        $array['user_id'] = $this->getUserId();
+        $array['user'] = $this->getUser();
+
         return $array;
     }
     public function jsonSerialize()
@@ -26,34 +29,41 @@ class TweetEntity implements Arrayable, JsonSerializable
 
     public function setId($id)
     {
-        $this->id = $id ;
+        $this->id = $id;
     }
+
     public function getId()
     {
         return $this->id;
     }
+
     public function setContent($content)
     {
-        $this->content = $content ;
+        $this->content = $content;
     }
+
     public function getContent()
     {
         return $this->content;
     }
+
     public function setImage($image)
     {
-        $this->image = $image ;
+        $this->image = $image;
     }
+
     public function getImage()
     {
         return $this->image;
     }
-    public function setUserId($userId)
+
+    public function setUser(UserEntity $userEntity)
     {
-        $this->userId = $userId;
+        $this->user = $userEntity;
     }
-    public function getUserId()
+
+    public function getUser()
     {
-        return $this->userId;
+        return $this->user;
     }
 }
