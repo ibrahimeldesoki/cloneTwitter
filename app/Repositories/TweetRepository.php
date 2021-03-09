@@ -45,9 +45,9 @@ class TweetRepository
 
     public function search(string $searchTweet)
     {
-        $tweets = $this->tweet->where('content','LIKE', '%'.$searchTweet.'%')->get();
+        $tweets = $this->tweet->where('content', 'LIKE', '%'.$searchTweet.'%')->get();
         $entities = [];
-        foreach($tweets as $tweet) {
+        foreach ($tweets as $tweet) {
             $searchTweetEntity = new SearchTweetEntity();
             $searchTweetEntity->setId($tweet->id);
             $searchTweetEntity->setSearchTweet($this->find($tweet->id));
