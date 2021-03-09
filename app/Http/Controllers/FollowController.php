@@ -10,7 +10,7 @@ class FollowController extends Controller
 {
     private $followService ;
     private $userService ;
-    public function __construct(FollowService $followService , UserService $userService)
+    public function __construct(FollowService $followService, UserService $userService)
     {
         $this->followService = $followService;
         $this->userService = $userService;

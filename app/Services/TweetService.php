@@ -22,7 +22,7 @@ class TweetService
         }
         return $this->tweetRep->store($tweetEntity);
     }
-    public  function find($tweet_id)
+    public function find($tweet_id)
     {
         return $this->tweetRep->find($tweet_id);
     }

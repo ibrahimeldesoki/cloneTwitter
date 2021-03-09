@@ -4,7 +4,7 @@ namespace App\Entities;
 use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
 
-class LikeTweetEntity implements Arrayable ,JsonSerializable
+class LikeTweetEntity implements Arrayable, JsonSerializable
 {
     private $id ;
     private $user_id ;
@@ -17,7 +17,10 @@ class LikeTweetEntity implements Arrayable ,JsonSerializable
         $array['user_id'] = $this->getUserId();
         return $array;
     }
-    public function jsonSerialize() { return $this->toArray();}
+    public function jsonSerialize()
+    {
+        return $this->toArray();
+    }
     public function setId($id)
     {
         $this->id = $id ;

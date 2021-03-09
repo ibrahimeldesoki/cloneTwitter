@@ -26,3 +26,4 @@ Route::post('/signup' , 'UserController@store')->name('user.signup');
 Route::resources(['tweet' => 'TweetController']);
 Route::post('/follow' , 'FollowController@follow');
 Route::post('/like' , 'TweetController@likeTweet');
+Route::post('/search/tweet' , 'TweetController@searchTweet');

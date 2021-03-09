@@ -27,5 +27,5 @@ class UserRepository
         $userEntity->setEmail($user->email);
 
         return $userEntity;
-     }
+    }
 }

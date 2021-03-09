@@ -4,7 +4,7 @@ namespace App\Entities;
 use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
 
-class UserEntity implements Arrayable , JsonSerializable
+class UserEntity implements Arrayable, JsonSerializable
 {
     private $id ;
     private $name ;
@@ -19,7 +19,10 @@ class UserEntity implements Arrayable , JsonSerializable
         $array['password'] = $this->getPassword();
         return $array;
     }
-    public function jsonSerialize() { return $this->toArray();}
+    public function jsonSerialize()
+    {
+        return $this->toArray();
+    }
     public function setId($id)
     {
         $this->id = $id;
