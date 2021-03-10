@@ -55,19 +55,19 @@ class TweetRepository
 
         return  $entities;
     }
+
     public function timeline($followingUsers)
     {
-        $tweets = $this->tweet->withCount('likes')->whereIn('user_id',$followingUsers)->orderBy('created_at' ,'desc')->get();
+        $tweets = $this->tweet->withCount('likes')->whereIn('user_id', $followingUsers)->orderBy('created_at', 'desc')->get();
         $tweetEntities = [];
-        foreach($tweets As $tweet)
-        {
-            $tweetEntity = New TweetEntity;
+        foreach ($tweets as $tweet) {
+            $tweetEntity = new TweetEntity();
             $tweetEntity->setId($tweet->id);
             $tweetEntity->setContent($tweet->content);
             $tweetEntity->setImage($tweet->image);
             $tweetEntity->setUser($this->userRepository->find($tweet->user_id));
             $tweetEntity->setLikeCount($tweet->likes_count);
-            $tweetEntities[] =  $tweetEntity;
+            $tweetEntities[] = $tweetEntity;
         }
 
         return $tweetEntities;

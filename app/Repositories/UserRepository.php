@@ -32,6 +32,7 @@ class UserRepository
 
         return $userEntity;
     }
+
     public function followingUsers($user_id)
     {
         return   $this->user->find($user_id)->following()->pluck('following_user_id');

@@ -20,6 +20,7 @@ class HomeController extends Controller
     public function index()
     {
         $followingUsers = $this->userService->followingUsers(Auth::user()->id);
+
         return $this->tweetService->timeline($followingUsers);
     }
 }

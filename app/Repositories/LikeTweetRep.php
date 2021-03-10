@@ -32,6 +32,6 @@ class LikeTweetRep
 
     public function countLikes($tweetId)
     {
-        return $this->likeTweet->where('tweet_id' ,$tweetId)->count();
+        return $this->likeTweet->where('tweet_id', $tweetId)->count();
     }
 }
