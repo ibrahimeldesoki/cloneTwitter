@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\TweetService;
+use App\Services\UserService;
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private $tweetService;
+
+    public function __construct(TweetService $tweetService, UserService $userService)
     {
-        $this->middleware('auth');
+        $this->tweetService = $tweetService;
+        $this->userService = $userService;
+        // $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('home');
+        $followingUsers = $this->userService->followingUsers(Auth::user()->id);
+
+        return $this->tweetService->timeline($followingUsers);
     }
 }

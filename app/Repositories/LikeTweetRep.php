@@ -21,12 +21,17 @@ class LikeTweetRep
         $attributes['tweet_id'] = $likeTweetEntity->getTweet()->getId();
         $like = $this->likeTweet->create($attributes);
         $likeTweetEntity->setId($like->id);
-        // dd($likeTweetEntity);
+
         return $likeTweetEntity;
     }
 
     public function liked(LikeTweetEntity $likeTweetEntity)
     {
         return $this->likeTweet->where('user_id', $likeTweetEntity->getUser()->getId())->where('tweet_id', $likeTweetEntity->getTweet()->getId())->exists();
+    }
+
+    public function countLikes($tweetId)
+    {
+        return $this->likeTweet->where('tweet_id', $tweetId)->count();
     }
 }

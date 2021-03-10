@@ -26,4 +26,9 @@ class UserService
     {
         return $this->userRepository->find($user_id);
     }
+
+    public function followingUsers($userId)
+    {
+        return $this->userRepository->followingUsers($userId);
+    }
 }
