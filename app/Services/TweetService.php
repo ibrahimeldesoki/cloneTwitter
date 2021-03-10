@@ -10,7 +10,8 @@ class TweetService
 {
     private $tweetRep;
     private $likeTweetRep;
-    public function __construct(TweetRepository $tweetRep , LikeTweetRep $likeTweetRep)
+
+    public function __construct(TweetRepository $tweetRep, LikeTweetRep $likeTweetRep)
     {
         $this->tweetRep = $tweetRep;
         $this->likeTweetRep = $likeTweetRep;
@@ -38,14 +39,14 @@ class TweetService
     {
         return $this->tweetRep->search($searchTweet);
     }
+
     public function timeline($followingTweets)
     {
         $tweets = $this->tweetRep->timeline($followingTweets);
-        foreach($tweets as $tweet)
-        {
-           $tweet->likeCount = $this->likeTweetRep->countLikes($tweet->id);
+        foreach ($tweets as $tweet) {
+            $tweet->likeCount = $this->likeTweetRep->countLikes($tweet->id);
         }
-         return $tweets;
 
+        return $tweets;
     }
 }

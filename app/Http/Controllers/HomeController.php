@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    private $tweetService ;
+    private $tweetService;
+
     public function __construct(TweetService $tweetService, UserService $userService)
     {
         $this->tweetService = $tweetService;
@@ -20,6 +21,7 @@ class HomeController extends Controller
     public function index()
     {
         $followingTweets = $this->userService->followingTweets(Auth::user()->id);
+
         return $this->tweetService->timeline($followingTweets);
     }
 }
