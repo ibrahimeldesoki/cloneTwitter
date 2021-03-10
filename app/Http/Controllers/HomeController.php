@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    private $tweetService ;
+    private $tweetService;
+
     public function __construct(TweetService $tweetService, UserService $userService)
     {
         $this->tweetService = $tweetService;

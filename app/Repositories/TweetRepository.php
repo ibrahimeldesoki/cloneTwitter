@@ -4,7 +4,6 @@ namespace App\repositories;
 
 use App\Entities\SearchTweetEntity;
 use App\Entities\TweetEntity;
-
 use App\Repositories\UserRepository;
 use App\Tweet;
 

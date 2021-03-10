@@ -10,7 +10,8 @@ class TweetService
 {
     private $tweetRep;
     private $likeTweetRep;
-    public function __construct(TweetRepository $tweetRep , LikeTweetRep $likeTweetRep)
+
+    public function __construct(TweetRepository $tweetRep, LikeTweetRep $likeTweetRep)
     {
         $this->tweetRep = $tweetRep;
         $this->likeTweetRep = $likeTweetRep;
