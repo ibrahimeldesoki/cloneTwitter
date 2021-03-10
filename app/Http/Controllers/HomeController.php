@@ -13,13 +13,12 @@ class HomeController extends Controller
     {
         $this->tweetService = $tweetService;
         $this->userService = $userService;
-
         // $this->middleware('auth');
     }
 
     public function index()
     {
-        $followingTweets = $this->userService->followingTweets(Auth::user()->id);
-        return $this->tweetService->timeline($followingTweets);
+        $followingUsers = $this->userService->followingUsers(Auth::user()->id);
+        return $this->tweetService->timeline($followingUsers);
     }
 }

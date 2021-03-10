@@ -26,8 +26,8 @@ class UserService
     {
         return $this->userRepository->find($user_id);
     }
-    public  function followingTweets($userId)
+    public  function followingUsers($userId)
     {
-        return $this->userRepository->followingTweets($userId);
+        return $this->userRepository->followingUsers($userId);
     }
 }

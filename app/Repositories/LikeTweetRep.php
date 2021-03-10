@@ -21,7 +21,7 @@ class LikeTweetRep
         $attributes['tweet_id'] = $likeTweetEntity->getTweet()->getId();
         $like = $this->likeTweet->create($attributes);
         $likeTweetEntity->setId($like->id);
-        // dd($likeTweetEntity);
+
         return $likeTweetEntity;
     }
 
@@ -31,6 +31,6 @@ class LikeTweetRep
     }
     public function countLikes($tweetId)
     {
-        return $this->likeTweet->where('tweet_id' ,$tweetId)->get()->count();
+        return $this->likeTweet->where('tweet_id' ,$tweetId)->count();
     }
 }

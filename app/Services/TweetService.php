@@ -38,14 +38,8 @@ class TweetService
     {
         return $this->tweetRep->search($searchTweet);
     }
-    public function timeline($followingTweets)
+    public function timeline($followingUsers)
     {
-        $tweets = $this->tweetRep->timeline($followingTweets);
-        foreach($tweets as $tweet)
-        {
-           $tweet->likeCount = $this->likeTweetRep->countLikes($tweet->id);
-        }
-         return $tweets;
-
+        return $this->tweetRep->timeline($followingUsers);
     }
 }
