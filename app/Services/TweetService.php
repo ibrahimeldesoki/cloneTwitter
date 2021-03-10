@@ -39,6 +39,7 @@ class TweetService
     {
         return $this->tweetRep->search($searchTweet);
     }
+
     public function timeline($followingUsers)
     {
         return $this->tweetRep->timeline($followingUsers);

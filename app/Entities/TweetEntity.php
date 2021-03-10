@@ -12,6 +12,7 @@ class TweetEntity implements Arrayable, JsonSerializable
     private $image;
     private $user;
     private $likeCount;
+
     public function toArray()
     {
         $array = [];
@@ -20,6 +21,7 @@ class TweetEntity implements Arrayable, JsonSerializable
         $array['image'] = $this->getImage();
         $array['user'] = $this->getUser();
         $array['like_count'] = $this->getLikeCount();
+
         return $array;
     }
 
@@ -67,10 +69,12 @@ class TweetEntity implements Arrayable, JsonSerializable
     {
         return $this->user;
     }
+
     public function setLikeCount($likeCount)
     {
-        $this->likeCount =$likeCount;
+        $this->likeCount = $likeCount;
     }
+
     public function getLikeCount()
     {
         return $this->likeCount;
