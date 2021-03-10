@@ -3,15 +3,17 @@
 namespace  App\Services;
 
 use App\Entities\TweetEntity;
+use App\repositories\LikeTweetRep;
 use App\repositories\TweetRepository;
 
 class TweetService
 {
     private $tweetRep;
-
-    public function __construct(TweetRepository $tweetRep)
+    private $likeTweetRep;
+    public function __construct(TweetRepository $tweetRep , LikeTweetRep $likeTweetRep)
     {
         $this->tweetRep = $tweetRep;
+        $this->likeTweetRep = $likeTweetRep;
     }
 
     public function create(TweetEntity $tweetEntity)
@@ -35,5 +37,15 @@ class TweetService
     public function search(string $searchTweet)
     {
         return $this->tweetRep->search($searchTweet);
+    }
+    public function timeline($followingTweets)
+    {
+        $tweets = $this->tweetRep->timeline($followingTweets);
+        foreach($tweets as $tweet)
+        {
+           $tweet->likeCount = $this->likeTweetRep->countLikes($tweet->id);
+        }
+         return $tweets;
+
     }
 }

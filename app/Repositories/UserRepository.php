@@ -32,4 +32,9 @@ class UserRepository
 
         return $userEntity;
     }
+    public function  followingTweets($user_id)
+    {
+        $user =$this->user->where('id',$user_id)->first();
+        return $user->following()->with('tweets')->get();
+    }
 }

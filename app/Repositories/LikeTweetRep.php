@@ -29,4 +29,8 @@ class LikeTweetRep
     {
         return $this->likeTweet->where('user_id', $likeTweetEntity->getUser()->getId())->where('tweet_id', $likeTweetEntity->getTweet()->getId())->exists();
     }
+    public function countLikes($tweetId)
+    {
+        return $this->likeTweet->where('tweet_id' ,$tweetId)->get()->count();
+    }
 }

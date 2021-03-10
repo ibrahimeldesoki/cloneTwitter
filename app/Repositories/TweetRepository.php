@@ -4,7 +4,7 @@ namespace App\repositories;
 
 use App\Entities\SearchTweetEntity;
 use App\Entities\TweetEntity;
-use App\Repositories\TweetRepository;
+
 use App\Repositories\UserRepository;
 use App\Tweet;
 
@@ -55,5 +55,11 @@ class TweetRepository
         }
 
         return  $entities;
+    }
+    public function timeline($followingTweets)
+    {
+       return $followingTweets->map(function($user){
+            return $user->tweets;
+       })->collapse()->sortByDesc('created_at');
     }
 }
