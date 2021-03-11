@@ -7,7 +7,6 @@ use Illuminate\Cache\CacheManager;
 
 class TweetRepositoryCache extends TweetRepository
 {
-
     /**
      * @var CacheManagerInterface
      */

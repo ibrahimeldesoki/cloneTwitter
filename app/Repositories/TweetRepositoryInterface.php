@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Entities\TweetEntity;
 
-Interface TweetRepositoryInterface
+interface TweetRepositoryInterface
 {
     public function store(TweetEntity $tweetEntity);
 

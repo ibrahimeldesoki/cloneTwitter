@@ -2,12 +2,11 @@
 
 namespace App\Providers;
 
-use App\Repositories\TweetRepository;
 use App\Repositories\TweetRepositoryApi;
+use App\Repositories\TweetRepositoryCache;
+use App\Repositories\TweetRepositoryInterface;
 use App\Services\TestService;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\TweetRepositoryInterface;
-use App\Repositories\TweetRepositoryCache;
 
 class AppServiceProvider extends ServiceProvider
 {
