@@ -25,9 +25,9 @@ class UserRepository
 
     public function find($user_id)
     {
-        $user = Cache::remember('find_tweet', 60 * 60 * 24, function() use($user_id){
+        $user = Cache::remember('find_tweet', 60 * 60 * 24, function () use ($user_id) {
             return $this->user->find($user_id);
-       });
+        });
         $userEntity = new UserEntity();
         $userEntity->setId($user->id);
         $userEntity->setName($user->name);

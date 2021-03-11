@@ -33,8 +33,8 @@ class TweetRepository
 
     public function find($tweet_id)
     {
-        $tweet = Cache::remember('find_tweet', 60 * 60 * 24, function() use($tweet_id){
-             return $this->tweet->find($tweet_id);
+        $tweet = Cache::remember('find_tweet', 60 * 60 * 24, function () use ($tweet_id) {
+            return $this->tweet->find($tweet_id);
         });
         $tweet = $this->tweet->find($tweet_id);
         $tweetEntity = new TweetEntity();
@@ -62,8 +62,8 @@ class TweetRepository
 
     public function timeline($followingUsers)
     {
-        $tweets =   Cache::remember('tweets', 60 * 60 * 24, function() use($followingUsers){
-         return   $this->tweet->withCount('likes')->whereIn('user_id', $followingUsers)->orderBy('created_at', 'desc')->get();
+        $tweets = Cache::remember('tweets', 60 * 60 * 24, function () use ($followingUsers) {
+            return   $this->tweet->withCount('likes')->whereIn('user_id', $followingUsers)->orderBy('created_at', 'desc')->get();
         });
         $tweetEntities = [];
         foreach ($tweets as $tweet) {
@@ -75,7 +75,7 @@ class TweetRepository
             $tweetEntity->setLikeCount($tweet->likes_count);
             $tweetEntities[] = $tweetEntity;
         }
-        return $tweetEntities;
 
+        return $tweetEntities;
     }
 }
