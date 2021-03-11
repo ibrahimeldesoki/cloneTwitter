@@ -6,6 +6,7 @@ use App\Entities\SearchTweetEntity;
 use App\Entities\TweetEntity;
 use App\Repositories\UserRepository;
 use App\Tweet;
+use Illuminate\Support\Facades\Cache;
 
 class TweetRepository
 {
@@ -32,6 +33,9 @@ class TweetRepository
 
     public function find($tweet_id)
     {
+        $tweet = Cache::remember('find_tweet', 60 * 60 * 24, function() use($tweet_id){
+             return $this->tweet->find($tweet_id);
+        });
         $tweet = $this->tweet->find($tweet_id);
         $tweetEntity = new TweetEntity();
         $tweetEntity->setId($tweet->id);
@@ -58,7 +62,9 @@ class TweetRepository
 
     public function timeline($followingUsers)
     {
-        $tweets = $this->tweet->withCount('likes')->whereIn('user_id', $followingUsers)->orderBy('created_at', 'desc')->get();
+        $tweets =   Cache::remember('tweets', 60 * 60 * 24, function() use($followingUsers){
+         return   $this->tweet->withCount('likes')->whereIn('user_id', $followingUsers)->orderBy('created_at', 'desc')->get();
+        });
         $tweetEntities = [];
         foreach ($tweets as $tweet) {
             $tweetEntity = new TweetEntity();
@@ -69,7 +75,7 @@ class TweetRepository
             $tweetEntity->setLikeCount($tweet->likes_count);
             $tweetEntities[] = $tweetEntity;
         }
-
         return $tweetEntities;
+
     }
 }
