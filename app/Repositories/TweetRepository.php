@@ -29,7 +29,8 @@ class TweetRepository implements TweetRepositoryInterface
         return $tweetEntity;
     }
 
-    protected function findOne(int $id) {
+    protected function findOne(int $id)
+    {
         return $this->tweet->findOrFail($id);
     }
 
@@ -59,7 +60,8 @@ class TweetRepository implements TweetRepositoryInterface
         return  $entities;
     }
 
-    protected function getTimeLineTweets(array $ids) {
+    protected function getTimeLineTweets(array $ids)
+    {
         return $this->tweet->withCount('likes')->whereIn('user_id', $ids)->orderBy('created_at', 'desc')->get();
     }
 
