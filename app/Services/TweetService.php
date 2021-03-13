@@ -4,14 +4,14 @@ namespace  App\Services;
 
 use App\Entities\TweetEntity;
 use App\repositories\LikeTweetRep;
-use App\repositories\TweetRepository;
+use App\Repositories\TweetRepositoryInterface;
 
 class TweetService
 {
     private $tweetRep;
     private $likeTweetRep;
 
-    public function __construct(TweetRepository $tweetRep, LikeTweetRep $likeTweetRep)
+    public function __construct(TweetRepositoryInterface $tweetRep, LikeTweetRep $likeTweetRep)
     {
         $this->tweetRep = $tweetRep;
         $this->likeTweetRep = $likeTweetRep;

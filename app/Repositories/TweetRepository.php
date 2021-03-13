@@ -1,14 +1,12 @@
 <?php
 
-namespace App\repositories;
+namespace App\Repositories;
 
 use App\Entities\SearchTweetEntity;
 use App\Entities\TweetEntity;
-use App\Repositories\UserRepository;
 use App\Tweet;
-use Illuminate\Support\Facades\Cache;
 
-class TweetRepository
+class TweetRepository implements TweetRepositoryInterface
 {
     private $tweet;
     private $userRepository;
@@ -31,12 +29,14 @@ class TweetRepository
         return $tweetEntity;
     }
 
-    public function find($tweet_id)
+    protected function findOne(int $id)
     {
-        $tweet = Cache::remember('find_tweet', 60 * 60 * 24, function () use ($tweet_id) {
-            return $this->tweet->find($tweet_id);
-        });
-        $tweet = $this->tweet->find($tweet_id);
+        return $this->tweet->findOrFail($id);
+    }
+
+    public function find(int $tweet_id)
+    {
+        $tweet = $this->findOne($tweet_id);
         $tweetEntity = new TweetEntity();
         $tweetEntity->setId($tweet->id);
         $tweetEntity->setImage($tweet->image);
@@ -60,11 +60,14 @@ class TweetRepository
         return  $entities;
     }
 
-    public function timeline($followingUsers)
+    protected function getTimeLineTweets(array $ids)
     {
-        $tweets = Cache::remember('tweets', 60 * 60 * 24, function () use ($followingUsers) {
-            return   $this->tweet->withCount('likes')->whereIn('user_id', $followingUsers)->orderBy('created_at', 'desc')->get();
-        });
+        return $this->tweet->withCount('likes')->whereIn('user_id', $ids)->orderBy('created_at', 'desc')->get();
+    }
+
+    public function timeline(array $ids)
+    {
+        $tweets = $this->getTimeLineTweets($ids);
         $tweetEntities = [];
         foreach ($tweets as $tweet) {
             $tweetEntity = new TweetEntity();
